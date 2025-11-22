@@ -470,6 +470,13 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
   z-index: 1;
   pointer-events: none;
+
+    /* === ADD THESE FLEXBOX PROPERTIES === */
+  display: flex;             /* Make it a flex container */
+  flex-direction: column;    /* Stack children vertically */
+  align-items: center;       /* Center items horizontally along the cross-axis */
+  width: fit-content;        /* Optional: make the container only as wide as its content */
+  /* Or remove width and let flex items determine width */
 }
 
 .combo__title {
@@ -1073,3 +1080,4 @@ negative → moves up */
 @media screen and (min-width: 2048px) {
   body { zoom: 1.4; }
 }
+

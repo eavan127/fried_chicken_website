@@ -30,7 +30,7 @@
 
         <div class="nav__menu" id="nav-menu" aria-label="Main menu">
           <ul class="nav__list">
-            <li><a href="#home" class="nav__link active__link">HOME</a></li>
+            <li><a href="#home" class="nav__link active-link">HOME</a></li>
             <li><a href="#about" class="nav__link">ABOUT US</a></li>
             <li><a href="#order" class="nav__link">ORDERS</a></li>
             <li><a href="#combo" class="nav__link">COMBO</a></li>
@@ -169,7 +169,7 @@
         </div>
       </section>
 
-      <!-- ============ COMBO ============ -->
+     <!-- ============ COMBO ============ -->
       <section class="combo section" id="combo">
         <h2 class="section__title">
           <span>Supreme</span> <br />
@@ -178,8 +178,20 @@
 
         <div class="combo__container container grid">
           <div class="combo__content">
+            
+            <!-- 1. BACKGROUND TEXT (Correctly placed here) -->
+            <div class="combo__titles">
+                <h1 class="combo__title">COMBO</h1>
+                <h1 class="combo__title">COMBO</h1>
+                <h1 class="combo__title">COMBO</h1>
+                <h1 class="combo__title">COMBO</h1>
+                <h1 class="combo__title">COMBO</h1>
+            </div>
+          
+            <!-- 2. MAIN IMAGE -->
             <img src="assets/img/combo-img.png" alt="Three bowls of fried chicken" class="combo__img" />
 
+            <!-- 3. TOP NUMBERS -->
             <div class="combo__numbers" aria-hidden="true">
               <div class="combo__number">
                 <span>1</span>
@@ -195,20 +207,14 @@
                 <span>3</span>
                 <i class="ri-arrow-up-s-line"></i>
               </div>
+            </div> <!-- Close combo__numbers HERE -->
 
-              <div class="combo__titles">
-                <h1 class="combo__title">COMBO</h1>
-                <h1 class="combo__title">COMBO</h1>
-                <h1 class="combo__title">COMBO</h1>
-                <h1 class="combo__title">COMBO</h1>
-                <h1 class="combo__title">COMBO</h1>
-              </div>
-
-              <div class="combo__data">
-                <div class="combo__info"><b>1kg of</b> <br /> fried chicken</div>
-                <div class="combo__price">$32</div>
-              </div>
+            <!-- 4. BOTTOM PRICE (Moved OUTSIDE of combo__numbers) -->
+            <div class="combo__data">
+              <div class="combo__info"><b>1kg of</b> <br /> fried chicken</div>
+              <div class="combo__price">$32</div>
             </div>
+
           </div>
         </div>
       </section>
@@ -223,19 +229,6 @@
               STAYS IN <br />
               THE MOUTH !!
             </h2>
-
-            <img
-              src="assets/img/contact-img-1.png"
-              alt=""
-              class="contact__img-1"
-              aria-hidden="true"
-            />
-            <img
-              src="assets/img/contact-img-2.png"
-              alt=""
-              class="contact__img-2"
-              aria-hidden="true"
-            />
 
             <img
               src="assets/img/chicken-dam-6.png"

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
 
 :root{
-  --header-height: 3.5rem;
+  --header-height: 2.5rem;
 
   --first-color: #ef8c2b;      /* main orange */
   --black-color: #1c1c1c;
@@ -133,7 +133,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* Main spacing so content not under fixed header */
-.main { padding-top: calc(var(--header-height) + 1rem); }
+.main { padding-top: var(--header-height); }
 
 /* Button */
 .button {
@@ -158,11 +158,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ======================= HOME =====================*/
 .home { background-color: var(--first-color); }
-.home__container { padding-block: 3rem 1rem; row-gap: 3rem; }
+.home__container { padding-block: 1.5rem 1rem; row-gap: 1.5rem; }
 .home__data { position: relative; text-align: left; }
-.home__title { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: .5rem; color: var(--white-color); }
+.home__title { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: .25rem; color: var(--white-color); }
 .home__title span { color: var(--white-color); }
-.home__description { margin-bottom: 2rem; color: #2d2d2d; }
+.home__description { margin-bottom: 1rem; color: #2d2d2d; }
 
 /* Decorative images */
 .home__dam-1, .home__dam-2 { position: absolute; }
@@ -201,17 +201,19 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .about__img-1 {
-  width: 280px;
+  width: 150px;
   position: relative;
   z-index: 10;
   filter: var(--shadow-img);
+  left: -1rem;
 }
 
 .about__img-2 {
-  width: 210px;
+  width: 150px;
   position: absolute;
   top: -6.5rem;
-  right: -2rem;
+  right: 4rem;
+  left: 1rem;
   filter: var(--shadow-img);
 }
 
@@ -227,13 +229,13 @@ img { max-width: 100%; height: auto; display: block; }
 .about__tooltip-1 {
   background-color: var(--white-color);
   top: -2.50rem;
-  left: 0;
+  left: -2rem;
 }
 
 .about__tooltip-2 {
   background-color: var(--black-color);
   color: var(--white-color);
-  right: -5rem;
+  right: -10rem;
   bottom: 3rem;
   z-index: 10;
 }
@@ -262,9 +264,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /*==================== ORDER ====================*/
-/* =========================
-   ORDER – final polish
-   ========================= */
 
 /* Softer cream and subtle vignette like the video */
 .order{
@@ -281,8 +280,8 @@ img { max-width: 100%; height: auto; display: block; }
 .order__container{
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 3rem;
-  padding-block: 2rem 3.5rem;
+  row-gap: 1.5rem;
+  padding-block: 1rem 1.5rem;
 }
 
 /* Card canvas (let things spill out) */
@@ -290,7 +289,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative;
   background: transparent;
   overflow: visible;
-  min-height: 280px;
+  min-height: 180px;
 }
 
 /* --- SOFT GLOW BEHIND BUCKETS --- */
@@ -323,15 +322,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* small bucket (top-left) */
 .order__img-1{
-  width: clamp(150px, 28vw, 200px); /* rounded corner */
-  transform: translate(0.75rem, 0);     /* tiny nudge right */
+  width: clamp(180px, 32vw, 260px); /* larger and responsive */
+  justify-self: start;
+  transform: translate(-2.5rem, 0);     /* move further left */
 }
 
 /* big bucket (bottom-right) */
 .order__img-2{
-  width: clamp(300px, 56vw, 460px);
+  width: clamp(360px, 62vw, 520px);
   justify-self: end;
-  transform: translate(0.75rem, -1rem); /* tiny overlap up */
+  transform: translate(2.5rem, -1rem); /* move further right */
 }
 
 /* --- ORANGE TOOLTIP CARDS --- */
@@ -361,26 +361,28 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: -1;
 }
 
-/* left tooltip (default) */
+/* left tooltip (default arrow points left) */
 .order__tooltip-1::after {
-  left: -10px;
+  left: -10px; /* Arrow sticks out the left side to point at bucket */
 }
 
-/* right tooltip */
+/* right tooltip (arrow needs to point right) */
 .order__tooltip-2::after {
-  right: -10px;
+  right: -10px; /* Arrow sticks out the right side to point at bucket */
+  left: auto;   /* Important: Reset left so it doesn't conflict */
 }
 
-
-/* place each tooltip like the tutorial */
-.order__tooltip-1{                  /* next to the small bucket */
-  left: 9rem;
-  top: 3.15rem;
+/* place each tooltip relative to the bucket image */
+.order__tooltip-1 {
+  /* This places the $12 tag to the RIGHT of the first bucket */
+  left: 10rem; 
+  top: 3.5rem;
 }
-.order__tooltip-2{                  /* beside the big bucket */
-  left: 0.75rem;
-  bottom: 1.25rem;
-  max-width: 16rem;
+
+.order__tooltip-2 {
+  /* This places the $20 tag to the LEFT of the second bucket */
+  right: 10rem; /* Push from the right edge */
+  bottom: 2rem;
 }
 
 /* text inside tooltip */
@@ -413,21 +415,34 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ---- Desktop nudge to match the video ---- */
-@media (min-width: 1150px){
-  .order__container{
-    grid-template-columns: 740px;   /* same narrow column as tutorial */
+@media (min-width: 1150px) {
+  .order__container {
+    grid-template-columns: 500px; /* Keeps the column tight so items align center */
     justify-content: center;
-    row-gap: 0;
-    padding-block: 4rem 5rem;
+    row-gap: 5rem; /* Space between the two buckets */
+    padding-block: 4rem;
   }
-  .order__tooltip-1{ left: 7.25rem; top: 3.6rem; }
-  .order__img-2{ transform: translate(1rem, -1.1rem); }
+
+  /* TOOLTIP 1 ($12) - Positioned to the Right */
+  .order__tooltip-1 {
+    top: 3rem;
+    left: 11rem; /* Moves it nicely to the right of the bucket */
+  }
+
+  /* TOOLTIP 2 ($20) - Positioned to the Left */
+  .order__tooltip-2 {
+    bottom: 2rem;
+    right: initial; /* Reset the mobile style */
+    left: -15rem;   /* Negative number pulls it to the LEFT side of the bucket */
+  }
+  
+  /* Reset the positioning of the second bucket image */
+  .order__img-2 {
+    width: 350px;
+    justify-self: end; /* Aligns bucket to the right so tooltip fits on left */
+  }
 }
 
-/* padding = top / right / bottom / left */
-/* padding: 0 .75rem;       top/bottom 0, left/right 0.75rem */
-/* padding-block: 2rem 3.5rem;   top 2rem, bottom 3.5rem */
-/* padding-inline: 12px 24px; /* left | right */
 /* ==================== COMBO ==================== */
 .combo {
   background-color: var(--first-color);
@@ -435,7 +450,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .combo .section__title {
   text-align: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 2rem; /* Increased space between title and content */
 }
 
 .combo .section__title span {
@@ -443,7 +458,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .combo__container {
-  padding-block: 4rem 9rem;
+  padding-block: 0.5rem 6rem; /* Reduced top padding, Bottom 6rem (space for the price tag) */
   display: grid;
   place-items: center;
 }
@@ -454,143 +469,125 @@ img { max-width: 100%; height: auto; display: block; }
   place-items: center;
 }
 
-/* BOWLS IMAGE (middle layer) */
+/* BOWLS IMAGE (Middle Layer) */
 .combo__img {
   width: min(90vw, 420px);
   filter: var(--shadow-img);
-  z-index: 5;
+  position: relative;
+  z-index: 5; 
 }
 
-/* BIG “COMBO” WORDS (background layer) */
+/* BIG “COMBO” WORDS (Background Layer) */
 .combo__titles {
   position: absolute;
-  top: 1rem;
+  top: 55%; /* Move it down to the middle */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%); /* This perfectly centers it */
   text-align: center;
-  z-index: 1;
+  z-index: 1; /* Behind the image */
   pointer-events: none;
-
-    /* === ADD THESE FLEXBOX PROPERTIES === */
-  display: flex;             /* Make it a flex container */
-  flex-direction: column;    /* Stack children vertically */
-  align-items: center;       /* Center items horizontally along the cross-axis */
-  width: fit-content;        /* Optional: make the container only as wide as its content */
-  /* Or remove width and let flex items determine width */
+  display: flex;
+  flex-direction: column;
+  gap: 0; 
 }
 
 .combo__title {
-  font-size: clamp(2.75rem, 12vw, 6rem);
-  line-height: .9;
-  letter-spacing: .2em;   /* similar to tutorial spacing */
-  color: rgba(255,255,255,0.95);
+  font-size: clamp(3rem, 15vw, 6rem);
+  line-height: 0.8;
+  letter-spacing: .2em;
+  color: rgba(255, 255, 255, 0.15); /* Lower opacity for subtle background look */
+  user-select: none;
 }
 
-/* NUMBERS WITH ARROWS (above image) */
+/* NUMBERS (Top Layer) */
 .combo__numbers {
   position: absolute;
-  top: -0.75rem;          /* adjust to sit just above bowls */
+  top: -3rem; /* Floating higher above the bowls */
   display: flex;
-  column-gap: clamp(2rem, 10vw, 6rem);
+  column-gap: clamp(2rem, 10vw, 5rem);
   z-index: 7;
 }
 
 .combo__number {
-  display: grid;
-  row-gap: .45rem;
-  text-align: center;
-  font-family: var(--second-font);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
   color: var(--black-color);
+  font-family: var(--second-font);
 }
 
 .combo__number span {
   font-size: var(--h3-font-size);
+  background: var(--white-color);
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 50%;
 }
 
 .combo__number i {
   font-size: 1.25rem;
 }
 
-/* BADGES (front/top layer) */
+/* PRICE TAG (Bottom Layer) */
 .combo__data {
   position: absolute;
-  bottom: 1rem;           /* brings the badges over the bowls */
+  bottom: 1.5rem; /* Sits at the bottom of the bowls */
   display: flex;
   align-items: center;
-  gap: .75rem;
+  gap: 1rem;
   z-index: 10;
 }
 
 .combo__info {
   background-color: var(--white-color);
-  padding: .75rem 1rem;
-  border-radius: .75rem;
+  padding: .75rem 1.25rem;
+  border-radius: 1rem;
   font-size: var(--small-font-size);
-}
-
-.combo__info b {
-  font-family: var(--second-font);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .combo__price {
   background-color: var(--black-color);
   color: var(--first-color);
-  padding: 1rem 1.25rem;
+  padding: .75rem 1.25rem;
   border-radius: 1rem;
-  font-size: var(--h1-font-size);
+  font-size: var(--h2-font-size);
   font-family: var(--second-font);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
-/* ---------- Desktop tweaks ---------- */
+/* ---------- Desktop Adjustments ---------- */
 @media screen and (min-width: 1150px) {
-  .combo__container { padding-block: 6rem 13rem; }
-  .combo__img { width: 750px; }
+  .combo__container { 
+    padding-block: 1rem 1rem; 
+  }
+  .combo__img { width: 650px; }
+
+  .combo__titles { width: 100%; top: 50%; }
+  .combo__title { font-size: 8rem; letter-spacing: 40px; }
 
   .combo__numbers {
-    top: -1rem;
-    column-gap: 10rem;
+    top: -4rem;
+    column-gap: 12rem;
   }
-
-  .combo__number span {
-    font-size: var(--h2-font-size);
-  }
-
-  .combo__titles { top: 1rem; }
-  .combo__title { letter-spacing: 40px; }
+  .combo__number span { font-size: var(--h2-font-size); width: 40px; height: 40px; line-height: 40px;}
 
   .combo__data {
-    position: absolute;
-    bottom: -3rem;              /* push the whole group lower */
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    gap: .5rem;                 /* space between white and black box */
+    bottom: -10rem; 
   }
-
-  .combo__info {
-    background-color: var(--white-color);
-    padding: 1.25rem 2.5rem 1.25rem 1.25rem;
-    font-size: var(--h3-font-size);
-    border-radius: 1rem;
-  }
-
-  .combo__info b {
-    font-family: var(--second-font);
-  }
-
-  .combo__price {
-    background-color: var(--black-color);
-    color: var(--first-color);
-    padding: 2rem;
-    border-radius: 1.5rem;
-    font-size: var(--h1-font-size);
-    font-family: var(--second-font);
-  }
-
+  
+  .combo__info { font-size: var(--h3-font-size); padding: 1rem 1.5rem; }
+  .combo__price { font-size: var(--h1-font-size); padding: 1rem 1.5rem; }
 }
 
 /*==================== CONTACT ====================*/
+.contact{
+  background: var(--cream-color);
+}
+
 .contact__container {
   padding-bottom: 3rem;
   row-gap: 3rem;
@@ -862,7 +859,7 @@ negative → moves up */
     grid-template-columns: 530px 550px;
     align-items: center;
     column-gap: 2rem;
-    padding-block: 8rem 3rem;
+    padding-block: 3rem 3rem;
   }
 
   .home__data { text-align: initial; }
@@ -929,21 +926,25 @@ negative → moves up */
 
   .about__images { margin-right: 0; }
 
-  .about__img-1 { width: 460px; }
+  .about__img-1 { 
+    width: 360px;
+    top: -1rem;
+    right: -20.5rem 
+  }
   .about__img-2 {
     width: 360px;
-    top: -11rem;
-    right: -6.5rem;
+    top: -17rem;
+    right: -20.5rem;
   }
 
   .about__tooltip-1 {
     font-size: var(--h3-font-size);
     top: -5rem;
-    left: -5rem;
+    left: -6rem;
   }
   .about__tooltip-2 {
     font-size: var(--h3-font-size);
-    right: -4rem;
+    right: -8rem;
     bottom: 8rem;
   }
 
@@ -953,8 +954,9 @@ negative → moves up */
     padding-block: 4rem;
   }
 
-  .order__img-1 { width: 340px; }
-  .order__img-2 { width: 450px; }
+  .order__img-1 { width: 600px; justify-self: start; transform: translate(-12rem, 0); }
+  .order__img-2 { width: 600px; justify-self: end; transform: translate(12rem, -1.1rem); }
+  .order__img-3 { width: 600px; justify-self: end; transform: translate(10rem, -3rem) scaleX(-1) !important; }
 
   .order__shape-1 {
     width: 330px;
@@ -964,6 +966,13 @@ negative → moves up */
   }
 
   .order__shape-2 {
+    width: 330px;
+    height: 260px;
+    border-radius: 2rem;
+    right: -6rem;
+  }
+
+  .order__shape-3{
     width: 330px;
     height: 260px;
     border-radius: 2rem;
